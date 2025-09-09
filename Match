@@ -1,0 +1,45 @@
+package com.sportsleague;
+
+public class Match {
+    private int matchId;
+    private Team homeTeam;
+    private Team awayTeam;
+    private String date;
+    private String scorecard;
+    private String result;
+
+    public Match(int matchId, Team homeTeam, Team awayTeam, String date) {
+        this.matchId = matchId;
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
+        this.date = date;
+    }
+
+    public String getResult() { return result; }
+    public String getDate() { return date; }
+    public Team getHomeTeam() { return homeTeam; }
+    public Team getAwayTeam() { return awayTeam; }
+
+    public void recordResult(String scorecard, String result) {
+        this.scorecard = scorecard;
+        this.result = result;
+    }
+
+    public void recordResult(String scorecard, Team winner) {
+        this.scorecard = scorecard;
+        if (winner != null) {
+            this.result = winner.getName() + " won";
+            winner.addPoints(2);
+        } else {
+            this.result = "Draw";
+            homeTeam.addPoints(1);
+            awayTeam.addPoints(1);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return homeTeam.getName() + " vs " + awayTeam.getName() + " on " + date + 
+               " | Result: " + (result == null ? "Pending" : result);
+    }
+}
