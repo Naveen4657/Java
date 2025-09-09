@@ -1,0 +1,36 @@
+package com.sportsleague;
+
+import java.util.*;
+
+public class Team {
+    private int teamId;
+    private String name;
+    private String coach;
+    private String city;
+    private int points;
+
+    private List<Player> players = new ArrayList<>();
+
+    public Team(int teamId, String name, String coach, String city) {
+        this.teamId = teamId;
+        this.name = name;
+        this.coach = coach;
+        this.city = city;
+        this.points = 0;
+    }
+
+    public int getTeamId() { return teamId; }
+    public String getName() { return name; }
+    public int getPoints() { return points; }
+    public void addPoints(int pts) { this.points += pts; }
+    public List<Player> getPlayers() { return players; }
+
+    public void addPlayer(Player p) { players.add(p); }
+    public void showPlayers() {
+        System.out.println("Players of " + name + ":");
+        for (Player p : players) {
+            System.out.println(" - " + p.getName() + " (" + p.getRole() + ")");
+        }
+    }
+    public void resetPoints() { this.points = 0; }
+}
