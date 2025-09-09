@@ -1,0 +1,33 @@
+package com.sportsleague;
+
+public abstract class Player {
+    protected int playerId;
+    protected String name;
+    protected String role;
+    protected double rating;
+    protected int stats;
+
+    public Player(int playerId, String name, String role, double rating) {
+        this.playerId = playerId;
+        this.name = name;
+        this.role = role;
+        this.rating = rating;
+        this.stats = 0;
+    }
+
+    public String getName() { return name; }
+    public String getRole() { return role; }
+    public double getRating() { return rating; }
+    public int getStats() { return stats; }
+
+    public abstract void ratingUpdate(int performance);
+
+    public void addStats(int value) {
+        this.stats += value;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + role + ") - Rating: " + rating + ", Stats: " + stats;
+    }
+}
