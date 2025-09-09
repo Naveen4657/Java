@@ -1,0 +1,31 @@
+package com.sportsleague;
+
+public class LeagueAppMain {
+    public static void main(String[] args) {
+        LeagueService league = new LeagueService();
+
+        Team t1 = new Team(1, "Warriors", "John", "New York");
+        Team t2 = new Team(2, "Titans", "Mike", "LA");
+
+        league.registerTeam(t1);
+        league.registerTeam(t2);
+
+        t1.addPlayer(new Batsman(101, "Naveen", 75));
+        t1.addPlayer(new Bowler(102, "Nares", 65));
+        t2.addPlayer(new Batsman(201, "Akash", 80));
+        t2.addPlayer(new Bowler(202, "Prasenna", 70));
+
+        league.scheduleMatch(1, t1, t2, "2025-09-15");
+
+        league.showFixtures();
+
+        // Record result of first match
+        Match m = new Match(1, t1, t2, "2025-09-15");
+        m.recordResult("Warriors 250/8 vs Titans 240/10", t1);
+        league.showResults();
+
+        league.showStandings();
+
+        league.computeAwards();
+    }
+}
