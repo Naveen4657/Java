@@ -1,0 +1,58 @@
+package com.sportsleague;
+
+import java.util.*;
+
+public class LeagueService {
+    private List<Team> teams = new ArrayList<>();
+    private List<Match> matches = new ArrayList<>();
+
+    public void registerTeam(Team team) {
+        teams.add(team);
+    }
+
+    public void scheduleMatch(int matchId, Team t1, Team t2, String date) {
+        matches.add(new Match(matchId, t1, t2, date));
+    }
+
+    public void showStandings() {
+        teams.sort((a, b) -> b.getPoints() - a.getPoints());
+        System.out.println("\n=== LEAGUE TABLE ===");
+        for (Team t : teams) {
+            System.out.println(t.getName() + " | Points: " + t.getPoints());
+        }
+    }
+
+    public void showFixtures() {
+        System.out.println("\n=== FIXTURES ===");
+        for (Match m : matches) {
+            if (m.getResult() == null) {
+                System.out.println(m);
+            }
+        }
+    }
+
+    public void showResults() {
+        System.out.println("\n=== RESULTS ===");
+        for (Match m : matches) {
+            if (m.getResult() != null) {
+                System.out.println(m);
+            }
+        }
+    }
+
+    public void computeAwards() {
+        System.out.println("\n=== PLAYER AWARDS ===");
+        Player mvp = null;
+        for (Team t : teams) {
+            for (Player p : t.getPlayers()) {
+                if (mvp == null || p.getRating() > mvp.getRating()) {
+                    mvp = p;
+                }
+            }
+        }
+        if (mvp != null) {
+            System.out.println("MVP: " + mvp.getName() + " (" + mvp.getRole() + 
+                               ") with rating " + mvp.getRating());
+        }
+    }
+}
