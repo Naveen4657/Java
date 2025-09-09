@@ -1,0 +1,12 @@
+package com.sportsleague;
+
+public class Bowler extends Player {
+    public Bowler(int id, String name, double rating) {
+        super(id, name, "Bowler", rating);
+    }
+
+    @Override
+    public void ratingUpdate(int wickets) {
+        this.rating += wickets * 0.5;
+    }
+}
